@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "965905839130",
+    "project_id": "wapar-4fd2f",
+    "storage_bucket": "wapar-4fd2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965905839130:android:6bef3d709de903ca878da3",
+        "android_client_info": {
+          "package_name": "com.example.wapar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965905839130-se0lrscauq52ah87j9mjecb80e5jgnf3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wapar",
+            "certificate_hash": "6de7e2ce4dd0314af647b33d3a2bdc97f1b1d6d8"
+          }
+        },
+        {
+          "client_id": "965905839130-dcp6ld3ild79qs6tj6befp2m51hua35p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIlPZ8uA9KrSSVgEg8LvIGveEVCsjpWwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965905839130-dcp6ld3ild79qs6tj6befp2m51hua35p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
