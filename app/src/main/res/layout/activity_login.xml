@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/applogo" />
+
+    <EditText
+        android:id="@+id/etLoginUserNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/app_logo"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/default_color_1"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/input_shape"
+        android:ems="16"
+        android:hint="Enter Username or Phone"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/etLoginPasswordInput"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/etLoginUserNameInput"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/default_color_1"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_shape"
+        android:ems="16"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp" />
+
+    <CheckBox
+        android:id="@+id/cbRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etLoginPasswordInput"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="01dp"
+        android:text="Remember Me" />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etLoginPasswordInput"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:text="Forgot Password?"
+
+        />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etLoginPasswordInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_shape"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tvAdminPanelLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="5dp"
+        android:text="I am an Admin"
+        android:textColor="@color/default_color_1"/>
+
+    <TextView
+        android:id="@+id/tvNotAdminPanelLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="5dp"
+        android:text="I am Not an Admin"
+        android:textColor="@color/default_color_1"
+        android:visibility="invisible"
+        />
+
+</RelativeLayout>
