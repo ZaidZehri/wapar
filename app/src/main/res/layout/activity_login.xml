@@ -22,12 +22,12 @@
         android:layout_height="50dp"
         android:layout_below="@id/app_logo"
         android:layout_centerHorizontal="true"
-        android:textColorHint="@color/default_color_1"
         android:layout_marginTop="90dp"
         android:background="@drawable/input_shape"
         android:ems="16"
         android:hint="Enter Username or Phone"
-        android:paddingLeft="20dp" />
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/default_color_1" />
 
     <EditText
         android:id="@+id/etLoginPasswordInput"
