@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/gradient_background_pic"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/main_app_logo"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="150dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/applogo" />
 
@@ -20,9 +21,8 @@
         android:id="@+id/tvAppSlogan"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="05dp"
+        android:layout_marginBottom="70dp"
         android:text="Buy and Sell with Ease"
         android:gravity="center"
         android:textSize="20sp"
@@ -33,9 +33,7 @@
         android:id="@+id/btnLoginMain"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/button_shape"
         android:text="Already have an account? Login"
         android:textAllCaps="false"
@@ -47,18 +45,14 @@
         android:layout_height="wrap_content"
         android:text="OR"
         android:textColor="@color/default_color_4"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/btnLoginMain"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dp"/>
+        android:layout_margin="2dp"
+        />
 
     <Button
         android:id="@+id/btnJoinMain"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvOR"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/input_shape"
         android:text="Join Now!"
         android:textAllCaps="false"
@@ -66,4 +60,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>
