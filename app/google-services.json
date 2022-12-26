@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "965905839130",
+    "firebase_url": "https://wapar-4fd2f-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "wapar-4fd2f",
     "storage_bucket": "wapar-4fd2f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:965905839130:android:c0f7b55f99d6c1eb878da3",
+        "mobilesdk_app_id": "1:965905839130:android:5bd44ca076965599878da3",
         "android_client_info": {
           "package_name": "com.example.testapplicattion1"
         }
