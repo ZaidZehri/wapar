@@ -29,6 +29,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etUsernameInput, etPhoneInput, etPasswordInput;
     private ProgressDialog loadingBar;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,69 +57,62 @@ public class RegisterActivity extends AppCompatActivity {
         String phone = etPhoneInput.getText().toString();
         String password = etPasswordInput.getText().toString();
 
-        if(TextUtils.isEmpty(name))
-        {
+        if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Please Enter Your Name", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(phone))
-        {
+        } else if (TextUtils.isEmpty(phone)) {
             Toast.makeText(this, "Please Enter Your Phone Number", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(password))
-        {
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please Enter Your Password", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+        } else {
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("Please wait while we are checking the credentials");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            ValidatePhoneNumber(name,phone,password);
+            ValidatePhoneNumber(name, phone, password);
 
+//            databaseReference.setValue("Hello");
+//            Toast.makeText(RegisterActivity.this, "Database Updated",Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void ValidatePhoneNumber(String name, String phone, String password) {
 
-    private void ValidatePhoneNumber(String name, String phone, String password) {
-        final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!(snapshot.child("Users").child(phone).exists())){
+                if (!(snapshot.child("Users").child(phone).exists())) {
 
                     HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put("phone", phone);
                     userdataMap.put("password", password);
                     userdataMap.put("name", name);
 
-                    RootRef.child("Users").child(phone).updateChildren(userdataMap)
+                    databaseReference.child("Users").child(phone).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(RegisterActivity.this, "Congratulations, your account has been created",Toast.LENGTH_SHORT).show();
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Congratulations, your account has been created", Toast.LENGTH_SHORT).show();
 
                                         loadingBar.dismiss();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);
 
-                                    }
-                                    else {
+                                    } else {
 
                                         loadingBar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "Network Issue, Please try again later",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "Network Issue, Please try again later", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
 
-                }
-                else{
+                } else {
                     Toast.makeText(RegisterActivity.this, "This phone" + phone + "already exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Please try again with another phone number... Thank you", Toast.LENGTH_SHORT).show();
@@ -125,10 +122,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
+
 }
