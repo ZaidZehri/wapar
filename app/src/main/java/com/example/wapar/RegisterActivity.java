@@ -71,8 +71,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             ValidatePhoneNumber(name, phone, password);
 
-//            databaseReference.setValue("Hello");
-//            Toast.makeText(RegisterActivity.this, "Database Updated",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -113,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                             });
 
                 } else {
-                    Toast.makeText(RegisterActivity.this, "This phone" + phone + "already exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "This phone number " + phone + " already exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Please try again with another phone number... Thank you", Toast.LENGTH_SHORT).show();
 
