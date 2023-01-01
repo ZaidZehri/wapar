@@ -9,15 +9,19 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wapar.Model.Users;
+import com.example.wapar.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etLoginPhoneInput, etLoginPasswordInput;
     private Button btnLogin;
     private ProgressDialog loadingBar;
+    private CheckBox cbRememberMe;
 
     private String parentDbName = "Users";
 
@@ -41,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         etLoginPasswordInput = (EditText) findViewById(R.id.etLoginPasswordInput);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         loadingBar = new ProgressDialog(this);
+
+        cbRememberMe = (CheckBox) findViewById(R.id.cbRememberMe);
+        Paper.init(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Enter Your Phone Number", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please Enter Your Password", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             loadingBar.setTitle("Login Account");
             loadingBar.setMessage("Please wait while we are checking the credentials");
             loadingBar.setCanceledOnTouchOutside(false);
@@ -72,6 +79,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void AllowAccessToAccount(String phone, String password) {
+
+        if (cbRememberMe.isChecked()){
+            Paper.book().write(Prevalent.UserPhoneKey, phone);
+            Paper.book().write(Prevalent.UserPasswordKey, password);
+        }
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
@@ -79,25 +92,23 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (snapshot.child(parentDbName).child(phone).exists()){
+                if (snapshot.child(parentDbName).child(phone).exists()) {
                     Users usersData = snapshot.child(parentDbName).child(phone).getValue(Users.class);
 
-                    if (usersData.getPhone().equals(phone)){
-                        if (usersData.getPassword().equals(password)){
+                    if (usersData.getPhone().equals(phone)) {
+                        if (usersData.getPassword().equals(password)) {
                             Toast.makeText(LoginActivity.this, "Logged in Successfully.", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
 
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
 
-                        }
-                        else {
+                        } else {
                             loadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this,"Incorrect Password",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(LoginActivity.this, "Account with this phone " + phone + " do not exists.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }

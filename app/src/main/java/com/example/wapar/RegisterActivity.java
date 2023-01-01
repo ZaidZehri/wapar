@@ -113,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterActivity.this, "This phone number " + phone + " already exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Please try again with another phone number... Thank you", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Please try to Login", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);
